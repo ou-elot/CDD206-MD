@@ -2,67 +2,48 @@
 # Effectiveness of Allopurinol in Patients With Gout
 
  Elliott Ou
+ 
  Albert Lee
+ 
  UCSF ACID3
 
 ## Study Purpose
 
-This retrospective cohort study evaluated whether recorded allopurinol treatment was associated with achievement of the recommended serum urate treatment target among adults with gout in UCSF's de-identified OMOP data.
+This cohort study determined if allopurinol treatment was effective in lowering serum urate levels to target in adults with gout in UCSF's de-identified OMOP dataset.
 
 Allopurinol is a urate-lowering medication used for the long-term management of gout. It reduces uric acid production and is intended to lower serum urate and reduce future gout-related complications. It is not primarily used to relieve pain during an acute gout flare.
-
-The study question was:
 
 Among adults with gout, were patients with a recorded allopurinol exposure more likely to achieve a follow-up serum urate level below 6 mg/dL than patients without a recorded allopurinol exposure?
 
 ## Data Source
 
 The primary analysis used the OMOP DEID UCSF data source in ATLAS.
-
-A secondary feasibility check was also performed using the combined UCSF and SFDPH data source, but the UCSF-only cohort was used for the primary results and Table 1.
-
 ## Cohort Definition
 
 ### Cohort Entry
 
-The cohort entry event was the first qualifying diagnosis of gout during the patient's observation period.
-
-The date of the qualifying gout diagnosis was used as the index date.
+The cohort entry event was the patient's first diagnosis of gout. This date is used as the index date in this study. 
 
 ### Inclusion Criteria
 
 Patients were required to:
-
 1. Be 18 years of age or older on the index date.
 2. Have a recorded diagnosis of gout.
-3. Have at least one blood or serum urate measurement from 90 days before through 14 days after the index date.
 
 Previous use of gout medications was not used as an exclusion criterion.
 
-### Allopurinol-Treated Group
-
-Patients were classified as allopurinol-treated if they had at least one recorded allopurinol drug exposure.
-
-### No-Recorded-Allopurinol Group
-
-The comparison cohort consisted of patients who met the cohort criteria but had no recorded allopurinol exposures.
-
-The allopurinol-treated and no-recorded-allopurinol groups were therefore mutually exclusive and together accounted for the full qualifying cohort.
+Patients were classified as allopurinol-treated if they had at least one recorded allopurinol drug exposure. The comparison cohort consisted of patients with gout but had no recorded allopurinol exposures.
 
 ## Follow-Up and Effectiveness Outcome
 
-Patients were followed for up to 180 days after cohort entry.
+Patient data up to 180 days after cohort entry was used to determine effectiveness. 
 
-A 180-day follow-up period was selected because allopurinol is commonly initiated at a low dose and adjusted over time using repeated serum urate measurements. The outcome window of days 90 through 180 allowed approximately three to six months for treatment initiation, dose adjustment, and measurement of the patient's serum urate response.
+An 180-day follow-up period was selected because allopurinol is commonly initiated at a low dose and adjusted over time. The effectiveness outcome was determined by lowering the blood or serum urate value below 6 mg/dL. 6 mg/dL is the recommended serum urate treatment target. Patients with more severe gout cases may have lower targets.
 
-The effectiveness outcome was achievement of a blood or serum urate value below 6 mg/dL between days 90 and 180 after cohort entry.
-
-This value represents achievement of the recommended serum urate treatment target. It does not mean that the patient was cured of gout.
-
-For both treatment groups, two separate outcome cohorts were generated directly:
+For both treatments, two separate outcome groups were generated:
 
 1. Patients with at least one blood or serum urate measurement between days 90 and 180.
-2. Patients with at least one blood or serum urate measurement below 6 mg/dL during the same period.
+2. Patients with at least one blood or serum urate measurement below 6 mg/dL during the same 90-180 day period. 
 
 The comparison-group outcome counts were generated directly from the no-recorded-allopurinol cohort rather than being estimated by subtraction.
 
@@ -111,21 +92,13 @@ The percentage of the full cohort with recorded allopurinol exposure was:
 | Type 2 diabetes | 1,832 (32.34%) | 793 (41.41%) | 1,039 (27.71%) |
 | Chronic kidney disease | 2,807 (49.56%) | 1,153 (60.21%) | 1,654 (44.12%) |
 
-The allopurinol-treated group had a similar average age to the no-recorded-allopurinol group but contained a larger proportion of male and Asian patients.
-
-The allopurinol-treated group also had a higher recorded prevalence of chronic gout, type 2 diabetes, and chronic kidney disease than the no-recorded-allopurinol group.
-
-These differences indicate that the two exposure groups were not fully comparable at baseline and suggest potential confounding by indication and underlying disease complexity.
-
 ## Effectiveness Analysis
 
 Only patients with at least one follow-up blood or serum urate measurement between days 90 and 180 could be evaluated for the effectiveness outcome.
 
-The outcome cohorts were generated directly for the allopurinol-treated and no-recorded-allopurinol groups.
-
 ### Allopurinol-Treated Group
 
-Among the 1,915 allopurinol-treated patients:
+In the 1,915 allopurinol-treated patients:
 
 - 536 had at least one follow-up urate measurement between days 90 and 180.
 - 190 had at least one follow-up urate measurement below 6 mg/dL during that period.
@@ -133,7 +106,7 @@ Among the 1,915 allopurinol-treated patients:
 
 ### No-Recorded-Allopurinol Group
 
-Among the 3,749 patients without recorded allopurinol:
+In the 3,749 patients without treatment:
 
 - 471 had at least one follow-up urate measurement between days 90 and 180.
 - 161 had at least one follow-up urate measurement below 6 mg/dL during that period.
@@ -141,27 +114,25 @@ Among the 3,749 patients without recorded allopurinol:
 
 ### Outcome Table
 
-| Treatment group | Follow-up urate available | Urate <6 mg/dL, n (%) | No recorded urate <6 mg/dL, n (%) |
-|---|---:|---:|---:|
-| Allopurinol-treated | 536 | 190 (35.45%) | 346 (64.55%) |
-| No recorded allopurinol | 471 | 161 (34.18%) | 310 (65.82%) |
-| **Total** | **1,007** | **351 (34.86%)** | **656 (65.14%)** |
+| Treatment group | Follow-up available | Urate <6 mg/dL, n (%) | 
+|---|---:|---:|
+| Allopurinol-treated | 536 | 190 (35.45%) |
+| No recorded allopurinol | 471 | 161 (34.18%) |
+| **Total** | **1,007** | **351 (34.86%)** |
 
-The target achievement rate was calculated as:
-
-**Target achievement rate = (number of patients with a follow-up urate below 6 mg/dL / number of patients with any follow-up urate measurement) × 100**
+The target achievement rate was calculated as number of patients with successful outcome divided by all follow up measurements.
 
 For the allopurinol-treated group:
 
-`(190 / 536) × 100 = 35.45%`
+`190/536 = 35.45%`
 
 For the no-recorded-allopurinol group:
 
-`(161 / 471) × 100 = 34.18%`
+`161/471 = 34.18%`
 
-The absolute difference between the groups was:
+The difference between the groups was:
 
-`35.45% − 34.18% = 1.27 percentage points`
+`35.45% − 34.18% = 1.27%`
 
 ## Statistical Analysis
 
@@ -169,10 +140,10 @@ A Pearson chi-square test of independence was used to compare the proportion of 
 
 The hypotheses were:
 
-- **Null hypothesis:** Achievement of serum urate below 6 mg/dL is independent of recorded allopurinol exposure.
-- **Alternative hypothesis:** Achievement of serum urate below 6 mg/dL differs between the allopurinol-treated and no-recorded-allopurinol groups.
+- **Null hypothesis:** Achievement of serum urate below 6 mg/dL is independent of treatment
+- **Alternative hypothesis:** Achievement of serum urate below 6 mg/dL differs between the treatment and control group. 
 
-The observed contingency table was:
+Observed results:
 
 | Treatment group | Urate <6 mg/dL | No recorded urate <6 mg/dL |
 |---|---:|---:|
@@ -183,37 +154,24 @@ The Pearson chi-square test produced:
 
 **χ²(1) = 0.18, p = 0.67**
 
-Because the p-value was greater than 0.05, the null hypothesis was not rejected.
+Because the p-value was greater than 0.05, the null hypothesis was not rejected. The treatment does not have a significant effect in lowering serum urate levels. 
 
 ## Conclusion
 
-Among patients with an available follow-up urate measurement, 35.45% of allopurinol-treated patients and 34.18% of patients without recorded allopurinol achieved a serum urate value below 6 mg/dL.
+Among patients with an available follow-up urate measurement, 35.45% of allopurinol-treated patients and 34.18% of patients without recorded allopurinol achieved a serum urate value below 6 mg/dL. The difference was not statistically significant.
 
-The difference of 1.27 percentage points was not statistically significant.
-
-Therefore, this unadjusted analysis did not find evidence that recorded allopurinol exposure was associated with a greater likelihood of achieving the serum urate treatment target between days 90 and 180.
-
-This finding should not be interpreted as proof that allopurinol is ineffective.
-
-The allopurinol-treated group had substantially higher recorded prevalence of chronic gout, type 2 diabetes, and chronic kidney disease. These differences suggest that treated patients may have had more severe gout or greater underlying disease complexity.
-
-Because these baseline factors may affect both the likelihood of receiving allopurinol and the likelihood of reaching the serum urate target, the crude comparison may be affected by confounding by indication.
-
-A more complete analysis would adjust for these baseline differences using methods such as multivariable regression, matching, stratification, or propensity score adjustment.
+Therefore, analysis determined that recorded allopurinol exposure had no association with a greater likelihood of achieving the serum urate treatment target between days 90 and 180.
 
 ## Limitations
 
 This study has several limitations:
 
 1. Allopurinol exposure was based on recorded drug exposure and does not confirm that patients took the medication as prescribed.
-2. Patients were not required to be new users of allopurinol, so some treated patients may have been continuing an existing prescription.
-3. Information on medication dose, dose escalation, adherence, and treatment discontinuation was not included.
-4. Only patients with a recorded follow-up urate measurement between days 90 and 180 could be included in the effectiveness analysis. Allopurinol may take longer to reach desired outcomes. 
-5. Patients with follow-up measurements may differ from patients without follow-up laboratory testing.
-6. The outcome definition identified whether a patient had at least one urate value below 6 mg/dL during follow-up rather than selecting one standardized measurement per patient.
-7. A patient with multiple measurements could qualify based on one value below 6 mg/dL even if another value during the same period was higher.
-8. The analysis was unadjusted and did not control for differences in chronic gout, type 2 diabetes, chronic kidney disease, age, sex, race, ethnicity, or other potential confounding factors.
-9. The study used data from one healthcare system, which may limit generalizability to other populations.
+2. Information on medication dose, dose escalation, adherence, and treatment discontinuation was not included.
+3. Only patients with a recorded follow-up urate measurement between days 90 and 180 could be included in the effectiveness analysis. Allopurinol may take longer to reach desired outcomes. 
+5. The outcome definition used a value to judge success, instead of change in urate levels. 
+5. The analysis was unadjusted and did not control for differences in chronic gout, type 2 diabetes, chronic kidney disease, age, sex, race, ethnicity, or other potential confounding factors.
+6. The study used only one dataset, which may limit generalizability to the general population.
 
 ## Rubric and Self-Assessment
 
