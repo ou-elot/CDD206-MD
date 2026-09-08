@@ -42,9 +42,9 @@ note_type
 note_text
 ```
 
-## Initial NLP subset
+## Clinical Note Extraction
 
-An initial clinically relevant subset included:
+The clinical notes extracted had multiple types:
 
 | Note type | Notes |
 |---|---:|
@@ -55,46 +55,14 @@ An initial clinically relevant subset included:
 | Discharge Summary | 4,825 |
 | **Total** | **135,573** |
 
-This subset represented **5,239 patients**.
 
-A preliminary full inference run showed that analyzing all 135,573 notes with all three required LLMs would be computationally expensive. Therefore, I created a smaller reproducible sample rather than processing every available note.
+A full LLM inference run analyzing all 135,573 notes with three LLMs would be computationally expensive.
 
 ## Final NLP analysis sample
 
-The final NLP analysis included only:
+The final notes subset included only types **Progress Notes** and **Assessment & Plan Notes**, since I thought they would have the most mentions of the cohort concepts.
 
-- **Progress Notes**
-- **Assessment & Plan Notes**
-
-For each patient, notes were ranked by absolute distance from cohort entry. A maximum of **three notes per patient** was retained.
-
-```sql
-WITH ranked_notes AS (
-    SELECT
-        *,
-        ROW_NUMBER() OVER (
-            PARTITION BY person_id
-            ORDER BY
-                ABS(
-                    date_diff(
-                        'day',
-                        cohort_start_date,
-                        CAST(deid_service_date AS DATE)
-                    )
-                ),
-                CAST(deid_service_date AS DATE),
-                deid_note_key
-        ) AS note_rank
-    FROM eou.gout_extracted_notes
-    WHERE note_type IN (
-        'Progress Notes',
-        'Assessment & Plan Note'
-    )
-)
-SELECT *
-FROM ranked_notes
-WHERE note_rank <= 3;
-```
+For each patient, notes were sorted by time from cohort entry. The 3 notes closest to cohort entry date were kept.
 
 The final sample contained:
 
@@ -104,32 +72,23 @@ The final sample contained:
 - **994 Assessment & Plan Notes**
 
 Thirteen selected notes were null or blank, leaving **13,468 nonblank notes** eligible for model inference.
-
-This sampling strategy allowed the project to retain nearly all patients who had the selected high-yield note types while limiting the number of notes contributed by patients with very dense documentation.
-
 ---
 
 # Step 2. Cohort Concept Extraction From Notes
 
-Three binary concepts were extracted at the note level:
+Three concepts were used for this cohort:
 
 - `gout_mentioned`
 - `urate_mentioned`
 - `allopurinol_mentioned`
 
-The same overall classification definitions and structured output format were used for all LLMs. Negated, hypothetical, family-only, or otherwise non-patient-specific mentions were not intended to count as positive evidence.
+The same overall classification definitions and structured output format were used for all LLMs.
 
-The three LLMs were:
+The three LLMs models used were **Qwen/Qwen3-8B-AWQ**, **meta-llama/Llama-3.1-8B-Instruct**, **mistralai/Mistral-7B-Instruct-v0.3**
 
-1. **Qwen/Qwen3-8B-AWQ**
-2. **meta-llama/Llama-3.1-8B-Instruct**
-3. **mistralai/Mistral-7B-Instruct-v0.3**
+A text/pattern-matching baseline was also applied. If a word was found in the note, regardless of context, pattern-matching considers this positive. 
 
-A text/pattern-matching baseline was also applied.
-
-Patient-level labels were created by collapsing note-level results:
-
-> A patient was considered positive for a concept if at least one successfully evaluated selected note was positive for that concept.
+A patient was considered positive for a concept if at least one successfully evaluated selected note was positive for that concept.
 
 ## Patient-level concept counts
 
