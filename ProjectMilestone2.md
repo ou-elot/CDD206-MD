@@ -4,7 +4,7 @@
 **Drug:** Allopurinol  
 **Clinical condition:** Gout
 
-## Purpose
+## Study Purpose
 
 In Milestone 1, I created a structured EHR cohort of patients with gout who met the study eligibility criteria and evaluated allopurinol treatment using structured OMOP data. Milestone 2 evaluates how well information documented in clinical notes can recover the same cohort concepts and treatment information.
 
@@ -24,10 +24,7 @@ The goals of this milestone were to:
 
 Clinical notes were extracted in Athena for the structured gout cohort.
 
-The structured Milestone 1 cohort contained **5,664 patients**. The initial note extraction contained:
-
-- **433,821 clinical notes**
-- **5,498 unique patients**
+The structured Milestone 1 cohort contained **5,664 patients**. The note extraction contained **433,821 clinical notes** and **5,498 unique patients**.
 
 Therefore, 166 patients in the structured cohort did not have an extracted clinical note available in this dataset.
 
