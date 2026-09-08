@@ -104,29 +104,26 @@ There was substantial variation across methods, especially for urate. Mistral id
 
 # Step 3. Allopurinol Identification From Clinical Notes
 
-Within the **4,985-patient NLP sample**, the number of patients identified as having an allopurinol mention was:
+Within the clinical notes sample, the number of patients identified as having an allopurinol mention was:
 
-| Method | Allopurinol-positive patients | Percent of NLP sample |
+| Method | Allopurinol-positive patients | Percent of Clinical Notes Sample |
 |---|---:|---:|
 | Pattern matching | 1,285 | 25.8% |
 | Mistral | 968 | 19.4% |
 | Llama | 1,289 | 25.9% |
 | Qwen | 1,138 | 22.8% |
 
-All four note-based methods identified a lower proportion of treated patients than structured EHR data when evaluated in the same patient sample.
+All four note-based methods identified a lower proportion of treated patients than structured ATLAS health records when evaluated in the same patient sample. 
+
+This is very likely caused by the reduction of notes from 135,573 notes to 13,481 notes. 
 
 ---
 
 # Step 4. Demographics of the Sampled and Note-Derived Treated Groups
 
-A demographic table was created in Athena for the same **4,985 patients** in the NLP sample and joined to the patient-level extraction outputs by `person_id`.
+A demographic table was created in Athena for the same 4985 patients in the clinicla notes sample and joined to the patient-level extraction outputs by `person_id`.
 
-The demographic fields included:
-
-- age at cohort entry;
-- sex;
-- race; and
-- ethnicity.
+The demographic fields included: age at cohort entry, sex, race, and ethnicity.
 
 ## Table 1
 
