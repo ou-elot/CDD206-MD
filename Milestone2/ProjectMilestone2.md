@@ -79,7 +79,7 @@ Three concepts were used for this cohort:
 
 The same overall classification definitions and structured output format were used for all LLMs.
 
-The three LLMs models used were **Qwen/Qwen3-8B-AWQ**, **meta-llama/Llama-3.1-8B-Instruct**, **mistralai/Mistral-7B-Instruct-v0.3**
+The three LLMs models used were **Qwen/Qwen3-8B-AWQ**, **meta-llama/Llama-3.1-8B-Instruct**, **mistralai/Mistral-7B-Instruct-v0.3**, which were ran through opencode.
 
 A text/pattern-matching baseline was also applied. If a word was found in the note, regardless of context, pattern-matching considers this positive. 
 
@@ -235,3 +235,18 @@ The repository includes:
 The original full clinical-note extraction was performed in Athena and produced `eou.gout_extracted_notes` with 433,821 notes from 5,498 patients. The exact original extraction query was not retained, so the repository documents the resulting table schema and all subsequent reproducible processing steps rather than claiming to reproduce that initial extraction query exactly.
 
 Protected UCSF patient-level data and raw clinical-note files are not included in the repository.
+
+## Rubric and Self-Assessment
+
+| Component | Your Score | Albert Score | Points | Additional Justification (if needed) | Comments from Albert |
+|---|---:|---:|---:|---|---|
+| There is a git repo and video link in the Project Milestone 2 Submissions page. |1  |  | 1 |  |  |
+| Your git repo contains all the steps necessary to reproduce your analysis. | 1 |  | 5 |  |  |
+| Your video is <= 3 minutes. | 1 |  | 1 |  |  |
+| You receive at least 3 questions from your classmates. | 0 |  | 3 | tbd in class |  |
+| You mentioned the total number of notes you are including in your analysis. | 1 |  | 1 |  |  |
+| You applied pattern matching. |  |  | 1 |  |  |
+| You applied LLM inference using at least 3 models. |  |  | 1 |  |  |
+| You created a Table 1 for the results of your concept extractions. |  |  | 1 |  |  |
+| You answer whether it would be more reliable to rely on structured EHR or concept extractions from clinical notes to identify patients in your cohort who received the drug. |  |  | 1 |  |  |
+| **Total** |  |  | **15** |  |  |
