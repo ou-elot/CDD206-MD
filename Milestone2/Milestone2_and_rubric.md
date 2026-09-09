@@ -213,17 +213,16 @@ The Git repository contains the scripts and analysis logic needed to reproduce t
 
 The repository includes:
 
-- the SQL used to create the final NLP note subset;
-- the SQL used to extract demographics for the NLP-analysis patients;
-- the SQL used to generate the structured allopurinol indicator;
-- pattern-matching code;
-- LLM inference scripts and model configurations;
-- patient-level aggregation code;
-- Table 1 generation code;
-- structured EHR versus note-extraction comparison code; and
-- summary output tables.
+- the SQL used to extract clinical notes, 
+- the SQL used to create the final NLP note subset,
+- the SQL used to extract demographics for the NLP-analysis patients,
+- the SQL used to generate the structured allopurinol indicator,
+- pattern-matching code,
+- LLM inference scripts and model configurations,
+- patient-level aggregation code,
+- Table 1 generation code,
+- structured EHR versus note-extraction comparison code
 
-The original full clinical-note extraction was performed in Athena and produced `eou.gout_extracted_notes` with 433,821 notes from 5,498 patients. The exact original extraction query was not retained, so the repository documents the resulting table schema and all subsequent reproducible processing steps rather than claiming to reproduce that initial extraction query exactly.
 
 Protected UCSF patient-level data and raw clinical-note files are not included in the repository.
 
