@@ -216,30 +216,22 @@ Across Pattern, Mistral, Llama, and Qwen, note-based allopurinol extraction show
 
 ---
 
-# Reproducibility
+## Reproducibility
 
-Key analysis outputs include:
+The Git repository contains the scripts and analysis logic needed to reproduce the NLP and downstream analyses.
 
-```text
-outputs/patient_level_positive_counts_all_methods.csv
-outputs/table1_all_methods_allopurinol_treated.csv
-outputs/structured_vs_note_allopurinol_summary.csv
-outputs/structured_vs_note_allopurinol_summary.md
-```
+The repository includes:
 
-Key scripts include:
+- the SQL used to create the final NLP note subset;
+- the SQL used to extract demographics for the NLP-analysis patients;
+- the SQL used to generate the structured allopurinol indicator;
+- pattern-matching code;
+- LLM inference scripts and model configurations;
+- patient-level aggregation code;
+- Table 1 generation code;
+- structured EHR versus note-extraction comparison code; and
+- summary output tables.
 
-```text
-scripts/create_demographic_table1.py
-scripts/compare_structured_allopurinol.py
-```
+The original full clinical-note extraction was performed in Athena and produced `eou.gout_extracted_notes` with 433,821 notes from 5,498 patients. The exact original extraction query was not retained, so the repository documents the resulting table schema and all subsequent reproducible processing steps rather than claiming to reproduce that initial extraction query exactly.
 
-The repository should also include the SQL used for:
-
-- clinical-note extraction;
-- final note subset selection;
-- demographic extraction;
-- structured allopurinol extraction;
-- and Athena exports.
-
-No new LLM inference is required to reproduce the downstream demographic and structured-vs-note comparisons if the note-level prediction files are retained.
+Protected UCSF patient-level data and raw clinical-note files are not included in the repository.
