@@ -44,19 +44,10 @@ note_text
 
 ## Clinical Note Extraction
 
-The clinical notes extracted had multiple types:
-
-| Note type | Notes |
-|---|---:|
-| Progress Notes | 73,684 |
-| Consults | 36,797 |
-| Assessment & Plan Note | 13,809 |
-| H&P | 6,458 |
-| Discharge Summary | 4,825 |
-| **Total** | **135,573** |
+The clinical notes extracted had multiple types. We restricted our search to Progress Notes and Assessment & Plan (A&P) Notes. We further reduced the number of notes by restricting the subset to only include at most the 3 notes closest to cohort entry date. 
 
 
-A full LLM inference run analyzing all 135,573 notes with three LLMs would be computationally expensive.
+A full LLM inference run analyzing all 433,821 notes with three LLMs would be computationally expensive.
 
 ## Final NLP analysis sample
 
@@ -241,7 +232,7 @@ Protected UCSF patient-level data and raw clinical-note files are not included i
 | Component | Your Score | Albert Score | Points | Additional Justification (if needed) | Comments from Albert |
 |---|---:|---:|---:|---|---|
 | There is a git repo and video link in the Project Milestone 2 Submissions page. |1  |  | 1 |  |  |
-| Your git repo contains all the steps necessary to reproduce your analysis. | 1 |  | 5 |  |  |
+| Your git repo contains all the steps necessary to reproduce your analysis. | 5 |  | 5 |  |  |
 | Your video is <= 3 minutes. | 1 |  | 1 |  |  |
 | You receive at least 3 questions from your classmates. | 0 |  | 3 | tbd in class |  |
 | You mentioned the total number of notes you are including in your analysis. | 1 |  | 1 |  |  |
