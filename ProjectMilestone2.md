@@ -24,7 +24,7 @@ The goals of this milestone were to:
 
 Clinical notes were extracted in Athena for the structured gout cohort.
 
-The structured Milestone 1 cohort contained **5,664 patients**. The note extraction contained **433,821 clinical notes** and **5,498 unique patients**.
+The structured Milestone 1 cohort contained 5,664 patients. The note extraction contained 433,821 clinical notes and 5,498 unique patients.
 
 Therefore, 166 patients in the structured cohort did not have an extracted clinical note available in this dataset.
 
@@ -60,19 +60,14 @@ A full LLM inference run analyzing all 135,573 notes with three LLMs would be co
 
 ## Final NLP analysis sample
 
-The final notes subset included only types **Progress Notes** and **Assessment & Plan Notes**, since I thought they would have the most mentions of the cohort concepts.
+The final notes subset included only types Progress Notes and Assessment & Plan Notes, since I thought they would have the most mentions of the cohort concepts.
 
 For each patient, notes were sorted by time from cohort entry. The 3 notes closest to cohort entry date were kept.
 
-The final sample contained:
+The final sample contained 13,481 notes, 4,985 unique patients. Specifically, 12,487 Progress Notes and 994 Assessment & Plan Notes were in this note sample.
 
-- **13,481 notes**
-- **4,985 unique patients**
-- **12,487 Progress Notes**
-- **994 Assessment & Plan Notes**
+Thirteen selected notes were null or blank, leaving 13,468 nonblank notes usable for model inference.
 
-Thirteen selected notes were null or blank, leaving **13,468 nonblank notes** eligible for model inference.
----
 
 # Step 2. Cohort Concept Extraction From Notes
 
@@ -146,8 +141,6 @@ The demographic fields included: age at cohort entry, sex, race, and ethnicity.
 
 Across methods, the note-derived allopurinol-treated groups were demographically similar to one another and broadly consistent with the treated cohort from Milestone 1.
 
-The full NLP sample had a mean age of **60.3 years** and was **71.9% male**. The note-derived treated groups were more heavily male, ranging from **76.0% to 78.2% male** across methods. This was similar to the structured allopurinol-treated cohort in Milestone 1, which was approximately **78.2% male**.
-
 Age distributions were also highly similar across methods, with mean ages around 60 to 61 years. Race and ethnicity distributions did not show large shifts across the extraction methods.
 
 Overall, the demographic patterns were consistent with the expectation from Milestone 1 that patients identified as receiving allopurinol would be more frequently male while having a similar age distribution to the overall gout cohort.
@@ -156,36 +149,30 @@ Overall, the demographic patterns were consistent with the expectation from Mile
 
 # Step 5. Structured EHR vs Clinical-Note Identification of Allopurinol
 
-To make a direct patient-level comparison, the structured allopurinol treatment definition from Milestone 1 was applied to the same **4,985 NLP-analysis patients**.
+To make a direct patient-level comparison, the structured allopurinol treatment definition from Milestone 1 was applied to the same 4,985 NLP-analysis patients.
 
-Within this common population:
-
-- **1,849** patients were structured-EHR treated
-- **3,136** patients were structured-EHR not treated
-- structured treatment prevalence was **37.1%**
+According to ATLAS structured data, within this common population: 1,849 patients were treated, 3,136 patients were not treated. 37.1% of patients were treated.
 
 The structured indicator was then compared patient-by-patient with the note-derived `allopurinol_mentioned` result from each method.
 
-## Agreement with structured EHR treatment
-
-| Method | TP | FN | FP | TN | Sensitivity | Specificity | PPV | NPV | Agreement |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Pattern matching | 910 | 939 | 375 | 2,761 | 49.2% | 88.0% | 70.8% | 74.6% | 73.6% |
-| Mistral | 731 | 1,118 | 237 | 2,899 | 39.5% | 92.4% | 75.5% | 72.2% | 72.8% |
-| Llama | 891 | 958 | 398 | 2,738 | 48.2% | 87.3% | 69.1% | 74.1% | 72.8% |
-| Qwen | 835 | 1,014 | 303 | 2,833 | 45.2% | 90.3% | 73.4% | 73.6% | 73.6% |
+| Method | True Positive (TP) | False Negative (FN) | False Positive (FP) | True Negative (TN) | Sensitivity | Specificity |
+|---|---:|---:|---:|---:|---:|---:|
+| Pattern matching | 910 | 939 | 375 | 2,761 | 49.2% | 88.0% |
+| Mistral | 731 | 1,118 | 237 | 2,899 | 39.5% | 92.4% |
+| Llama | 891 | 958 | 398 | 2,738 | 48.2% | 87.3% |
+| Qwen | 835 | 1,014 | 303 | 2,833 | 45.2% | 90.3% |
 
 ## Interpretation
 
-For identifying whether a patient received allopurinol, the **structured EHR appears more reliable than relying only on the sampled clinical notes**.
+For identifying whether a patient received allopurinol, the structured EHR appears more reliable than relying only on the sampled clinical notes.
 
-The main evidence is the relatively low sensitivity of all note-based methods. Only **39.5% to 49.2%** of patients with structured allopurinol treatment were identified as allopurinol-positive in the selected notes. Even the highest-sensitivity method, pattern matching, missed **939 of 1,849** structured-treated patients.
+The main evidence is the relatively low sensitivity of all note-based methods. Only 39.5% to 49.2% of patients with structured allopurinol treatment were identified as allopurinol-positive in the selected notes. Even the highest-sensitivity method, pattern matching, missed 939 of 1,849 structured-treated patients.
 
-At the same time, specificity was relatively high (**87.3% to 92.4%**) and PPV ranged from **69.1% to 75.5%**. This means a positive allopurinol mention in a note was often consistent with structured treatment, but absence of a mention was not strong evidence that the patient was untreated.
+At the same time, specificity was relatively high (87.3% to 92.4%) and PPV ranged from 69.1% to 75.5%. This means a positive allopurinol mention in a note was often consistent with structured treatment, but absence of a mention was not strong evidence that the patient was untreated.
 
-The most likely explanation is that a structured medication exposure can exist without allopurinol being explicitly discussed in one of the patient's three selected notes. Clinical notes also provide information that structured drug exposure does not capture as easily, including whether treatment was being discussed, continued, stopped, held, or considered in a particular clinical context.
+A possible explanation is that a structured medication exposure can exist without allopurinol being explicitly discussed in one of the patient's three selected notes. However, more likely is that there are allopurinol mentions in the notes not included in the sample, since the note sample was limited to at most 3 notes per patient.
 
-Therefore, for the narrow question of **whether a patient received allopurinol**, I would rely primarily on structured EHR drug exposure. Clinical-note extraction is better used as a complementary source for validating treatment and understanding clinical context.
+For the  question of whether a patient received allopurinol, I would need to conduct a clinical-note extraction with all the patient notes to prove whether structured data or clinical notes is better for validating treatment and understanding clinical context.
 
 ---
 
@@ -201,9 +188,9 @@ For the methods with complete results available in this check:
 | Mistral | 11.0% | 6.0% |
 | Llama | 15.3% | 8.0% |
 
-Contrary to the initial expectation, Progress Notes had a higher allopurinol-positive rate than Assessment & Plan Notes in these results. Therefore, the relatively small number of Assessment & Plan notes alone is unlikely to explain the low sensitivity of note-based treatment identification.
+Contrary to my initial expectation, Progress Notes had a higher allopurinol-positive rate than Assessment & Plan Notes in these results. Therefore, the relatively small number of Assessment & Plan notes alone is unlikely to explain the low sensitivity of note-based treatment identification.
 
-This does not eliminate sampling as a limitation: allopurinol may still have been documented in other note types or in Progress/A&P notes that were not among the three selected notes for a patient.
+This does not eliminate sampling as a limitation. Allopurinol may still have been documented in other note types or in Progress/A&P notes that were not among the three selected notes for a patient.
 
 ---
 
@@ -225,7 +212,7 @@ This does not eliminate sampling as a limitation: allopurinol may still have bee
 
 Clinical notes were useful for recovering gout, urate, and allopurinol information, but note-based extraction alone did not identify all patients with structured allopurinol exposure.
 
-Across Pattern, Mistral, Llama, and Qwen, note-based allopurinol extraction showed high specificity but limited sensitivity. The results support using **structured EHR medication data as the primary source for determining whether allopurinol treatment occurred**, while using clinical notes as a complementary source for contextual information and validation.
+Across Pattern, Mistral, Llama, and Qwen, note-based allopurinol extraction showed high specificity but limited sensitivity. The results support using structured EHR medication data as the primary source for determining whether allopurinol treatment occurred, while using clinical notes as a complementary source for contextual information and validation. However, this result should be interpreted cautiously, since the project was done with a small subset of clinical notes. 
 
 ---
 
