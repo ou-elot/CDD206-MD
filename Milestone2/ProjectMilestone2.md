@@ -236,8 +236,8 @@ Protected UCSF patient-level data and raw clinical-note files are not included i
 | Your video is <= 3 minutes. | 1 |  | 1 |  |  |
 | You receive at least 3 questions from your classmates. | 0 |  | 3 | tbd in class |  |
 | You mentioned the total number of notes you are including in your analysis. | 1 |  | 1 |  |  |
-| You applied pattern matching. |  |  | 1 |  |  |
-| You applied LLM inference using at least 3 models. |  |  | 1 |  |  |
-| You created a Table 1 for the results of your concept extractions. |  |  | 1 |  |  |
-| You answer whether it would be more reliable to rely on structured EHR or concept extractions from clinical notes to identify patients in your cohort who received the drug. |  |  | 1 |  |  |
-| **Total** |  |  | **15** |  |  |
+| You applied pattern matching. | 1 |  | 1 |  |  |
+| You applied LLM inference using at least 3 models. | 1 |  | 1 |  |  |
+| You created a Table 1 for the results of your concept extractions. | 1 |  | 1 |  |  |
+| You answer whether it would be more reliable to rely on structured EHR or concept extractions from clinical notes to identify patients in your cohort who received the drug. | 1 |  | 1 |  |  |
+| **Total** | 12 |  | **15** |  |  |
